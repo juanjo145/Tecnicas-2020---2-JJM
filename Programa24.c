@@ -24,7 +24,7 @@ int menu(){
 
 
 int main(){
-   int opc, i,j, dia, mes, year ;
+   int opc, i,j, dia, mes, year, buscar ;
    int n = 0;
    char nombre[20];
    persona m[12][5];
@@ -52,17 +52,30 @@ int main(){
 		m[ mes-1 ][j].mes = mes;
 		m[ mes-1 ][j].year = year;
 		
-		printf( "Se ingreso el usuario" );
+		printf( "Se ingreso el usuario\n" );
 		break;
 	   }
 	
 	}
 	if( n = 0 ){
-		printf( "Abrace\n" );
+		printf( "No se puede ingresar mas gente :(\n" );
 			
 	}
            
 	    break;
+   case 2: n = 0;
+	   printf("Introduzca su numero de mes ");
+	   scanf( "%d", &buscar );
+	   for( i = 0; i < 5; i++ ){
+		if( m[buscar-1][i].mes != -1 ){
+			printf("La fecha de nacimiento de %s es: %d/%d/%d ", m[buscar-1][i].nom,m[buscar-1][i].dia,
+				m[buscar-1][i].mes,m[buscar-1][i].year  );
+			
+			}
+		}
+
+	break;
+
    }
   }while(opc != 0);
    return 0;
