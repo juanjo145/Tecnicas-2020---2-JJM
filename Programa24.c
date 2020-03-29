@@ -12,12 +12,35 @@ int menu(){
 	printf( "\n MENU \n" );
 	printf( " 1 INGRESAR USUARIO \n" );
 	printf( "2 NUMERO DE MES\n" );
+	printf( "3 IMPRIMIR TODOS LOS CUMPLES !\n" );
 	printf( "0 SALIR \n" );
 	scanf( "%d", &opc );
 
  
    return opc;
 }
+
+
+
+void imprimir(persona m[12][5], int i,int j){
+	if( i == 11 ){
+		printf("Impresa :)");	   	  
+	}
+	else{
+		if( j == 4 ){
+			j = 0; i++;
+		}
+		if( m[i][j].mes != -1 )
+		printf("La fecha de nacimiento de %s es: %d/%d/%d\n ", m[i][j].nom,m[i][j].dia,
+			m[i][j].mes,m[i][j].year  );
+		j++;
+		imprimir(m,i,j);
+
+	}
+
+}
+
+
 
 
 
@@ -63,12 +86,11 @@ int main(){
 	}
            
 	    break;
-   case 2: n = 0;
-	   printf("Introduzca su numero de mes ");
+   case 2: n = 0; printf("Introduzca su numero de mes ");
 	   scanf( "%d", &buscar );
 	   for( i = 0; i < 5; i++ ){
 		if( m[buscar-1][i].mes != -1 ){
-			printf("La fecha de nacimiento de %s es: %d/%d/%d ", m[buscar-1][i].nom,m[buscar-1][i].dia,
+			printf("La fecha de nacimiento de %s es: %d/%d/%d\n ", m[buscar-1][i].nom,m[buscar-1][i].dia,
 				m[buscar-1][i].mes,m[buscar-1][i].year  );
 			
 			}
@@ -78,8 +100,10 @@ int main(){
 
 	break;
 
-   case 3:
-
+   case 3: printf("Ahora vera todas las fechas\n");
+	  i = 0; j=0;
+	   imprimir(m,i,j);
+		
 
 
 	break;
