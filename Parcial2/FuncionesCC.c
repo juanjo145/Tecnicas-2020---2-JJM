@@ -3,7 +3,7 @@
 /* Funcion de ejemplo que imprimiria la informacion de un local */
 void mostrarLocal(local_t ** centroComercial,int fil, int col, int numPiso, int numLocalxPiso ) {
 	//Se valida si el numero ingresado esta en el rango	
-	if(numPiso-1<= fil-1 && numLocalxPiso-1 <= col-1  ){
+	if(numPiso<= fil && numLocalxPiso <= col  ){
 	//Se valida si la tienda esta abierta 
 	   if( centroComercial[numPiso-1][numLocalxPiso-1].disp == 1 ){
 		printf("\nNombre local : %s\n", centroComercial[numPiso][numLocalxPiso].nombreLocal);
@@ -64,8 +64,6 @@ void ingresarLocal( local_t ** centroComercial){
 	   scanf( "%d", &piso );
 	   printf( "Ingrese el numero de local: " );
 	   scanf( "%d", &local );
-	   piso = piso-1;
-	   local = local-1;
 	   //Aqui se verifica si el local indicado esta vacio
 	   if( centroComercial[piso][local].disp == 0 ){ 
 		printf( "Digite el nombre del local: " );
@@ -99,8 +97,6 @@ void ingresarLocal( local_t ** centroComercial){
 void cambiarLocal(local_t ** centroComercial, int piso, int local){
 	int opc;
 	local_t localCambio;
-	piso = piso -1;
-	local= local -1;
 	if( centroComercial[piso][local].disp == 1 ){
 		printf( "Oprima 1 para cambiar todo lo del local\n" );
 		printf( "Oprima 2 para cambiar el id\n" );
