@@ -3,9 +3,9 @@
 /* Funcion de ejemplo que imprimiria la informacion de un local */
 void mostrarLocal(local_t ** centroComercial,int fil, int col, int numPiso, int numLocalxPiso ) {
 	//Se valida si el numero ingresado esta en el rango	
-	if(numPiso<= fil && numLocalxPiso <= col  ){
+	if(numPiso-1<= fil-1 && numLocalxPiso-1 <= col-1  ){
 	//Se valida si la tienda esta abierta 
-	   if( centroComercial[numPiso][numLocalxPiso].disp == 1 ){
+	   if( centroComercial[numPiso-1][numLocalxPiso-1].disp == 1 ){
 		printf("\nNombre local : %s\n", centroComercial[numPiso][numLocalxPiso].nombreLocal);
 		printf("Numero local : %d \n", centroComercial[numPiso][numLocalxPiso].numLocalxPiso);
 		printf("ID del local : %d \n", centroComercial[numPiso][numLocalxPiso].idLocal);
@@ -20,8 +20,8 @@ void mostrarLocalesAbiertos(local_t ** centroComercial,int fil,int col){
 	int i, j;
 	for( i = 0; i < fil; i++ ){
       	    for( j = 0; j < col; j++ ){
-		if( centroComercial[i][j].disp == 1 ){
-			printf("\nNombre local : %s\n", centroComercial[i][j].nombreLocal);
+		if( centroComercial[i][j].disp != 0 ){
+			printf("\nNombre local abierto : %s\n", centroComercial[i][j].nombreLocal);
 		}
 	    }
    	}
@@ -52,7 +52,6 @@ void inicializarMatriz( local_t ** centroComercial, int fil, int col ){
 	for( i = 0; i < fil; i++ ){
       	    for( j = 0; j < col; j++ ){
 		centroComercial[i][j].disp = 0;
-		printf( "%d", centroComercial[i][j].disp );
 	    }
    	}
 	return ;
@@ -65,6 +64,8 @@ void ingresarLocal( local_t ** centroComercial){
 	   scanf( "%d", &piso );
 	   printf( "Ingrese el numero de local: " );
 	   scanf( "%d", &local );
+	   piso = piso-1;
+	   local = local-1;
 	   //Aqui se verifica si el local indicado esta vacio
 	   if( centroComercial[piso][local].disp == 0 ){ 
 		printf( "Digite el nombre del local: " );
@@ -87,12 +88,19 @@ void ingresarLocal( local_t ** centroComercial){
 	 	localNuevo.disp = 1;
 		centroComercial[piso][local] = localNuevo;
 	    }
+	    else{
+
+		ingresarLocal( centroComercial);
+	   }
+		
 }
 
 
 void cambiarLocal(local_t ** centroComercial, int piso, int local){
 	int opc;
 	local_t localCambio;
+	piso = piso -1;
+	local= local -1;
 	if( centroComercial[piso][local].disp == 1 ){
 		printf( "Oprima 1 para cambiar todo lo del local\n" );
 		printf( "Oprima 2 para cambiar el id\n" );
@@ -102,13 +110,17 @@ void cambiarLocal(local_t ** centroComercial, int piso, int local){
 			cerrarLocal( centroComercial,piso,local );
 			ingresarLocal( centroComercial );
 		}
-		if( opc == 2 ){
+		else if( opc == 2 ){
 			printf( "Introduzca el nuevo id: " );
 			scanf("%d", &centroComercial[piso][local].idLocal);
 		}
-		if( opc == 3 ){
+		else if( opc == 3 ){
 			printf("Introduzca el nombre nuevo ");
 			scanf( "%s", centroComercial[piso][local].nombreLocal );
+		}
+		else{
+		printf("Opcion incorrecta\n");
+		cambiarLocal(centroComercial, piso, local);
 		}
 	}
 	else{
