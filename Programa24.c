@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <string.h>
 
+/* Este codigo se ve desorganizado por los espacios vacíos y los problemas de indentación  */
+/* Falta que uses enums, la función recursiva en realidad no sigue los principios
+necesarios para realmente usar recursión */
+
 typedef struct persona{
    char nom[ 20 ];   
    int mes,dia,year;
@@ -21,7 +25,7 @@ int menu(){
 }
 
 
-
+/* Uso incorrecto de la recursión */
 void imprimir(persona m[12][5], int i,int j){
 	if( i == 11 ){
 		printf("Impresa :)");	   	  
@@ -40,6 +44,7 @@ void imprimir(persona m[12][5], int i,int j){
 
 }
 
+//Estos espacios hacer ver tu código feo.
 
 
 
@@ -52,6 +57,7 @@ int main(){
    char nombre[20];
    persona m[12][5];
 
+   // 12 y 5 podrían ser constants¿es
    for( i = 0; i < 12; i++ ){
    	for( j = 0; j < 5; j++ ){
 		m[i][j].mes= -1;
@@ -80,7 +86,7 @@ int main(){
 	   }
 	
 	}
-	if( n = 0 ){
+	if( n = 0 ){ //Luisa: debería ser ==
 		printf( "No se puede ingresar mas gente :(\n" );
 			
 	}
