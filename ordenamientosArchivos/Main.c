@@ -21,14 +21,17 @@ int menu(){
 int main(){
 	FILE *f;
 	int opc,i,s;
-	int * arr = malloc( 100000 * sizeof(int) ) ;
-	f = fopen( "Resultados(10).txt", "w+" );
+	int * arr = malloc( 100001 * sizeof(int) ) ;
+	time_t inicio,fin;
+	f = fopen( "Resultados(100000).txt", "a+" );
+	fprintf( f,"Documento de pruebas" );
 	do{
 		opc = menu();
 			switch(opc){
 
-				case 1: printf( "Introduzca cuantos elementos quiere organizar" );
-						scanf( "%d",&s );
+				case 1: printf( "Introduzca cuantos elementos quiere organizar: " );
+						//scanf( "%d",&s );
+						s =100000 ;
 						datos(arr,s);
 						break;
 
@@ -39,8 +42,13 @@ int main(){
 						break;
 
 				case 4: mejorado( arr,s,f );
+						break;
 
-				case 5: mergeSort(arr,0,s-1,f);
+				case 5: inicio = time(NULL);
+						printf( "Inicio: %f", time );
+						mergeSort(arr,0,s-1);
+						fin = time(NULL);
+						fprintf(f, "\nEl tiempo que se tomo en merge fue de: %f ", difftime(fin,inicio) );
 						break;
 
 				case 6: printf( "\nLos elementos del arreglo son: " );

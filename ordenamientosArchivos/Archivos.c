@@ -2,6 +2,7 @@
 
 void imprimirArchivo( int * arr, int s, FILE *f ){
 	int i;
+	fprintf( f,"\n" );
 	fprintf( f,"Los datos organizados por el algoritmo son: " );
 	for (i=0; i < s; i++){
 		fprintf(f, "%d ", arr[i]);
@@ -63,21 +64,18 @@ void merge(int * arr, int l, int m, int r){
 			j++;
 			k++;
 			}
+
 }
 
-void mergeSort(int * arr, int l, int r, FILE *f){
-	time_t inicio,fin;
-	inicio = time(NULL);
-	printf( "Inicio: %f", time );
+void mergeSort(int * arr, int l, int r){
 	if (l < r){
 		int m = l+(r-l)/2;
-		mergeSort(arr, l, m,f);
-		mergeSort(arr, m+1, r,f);
+		mergeSort(arr, l, m);
+		mergeSort(arr, m+1, r);
 		merge(arr, l, m, r);
 	}
-	printf("Arreglo ordenado\n");
-	fin = time(NULL);
-	fprintf(f, "\nEl tiempo que se tomo en merge fue de: %f ", difftime(fin,inicio) );
+	
+	
 }
 
 void datos( int * arr, int s ){
@@ -132,7 +130,7 @@ void mejorado( int * arr, int size, FILE *f){
 		}
 	}
 
-	printf("Arreglo ordenado\n");
+	
 	fin = time(NULL);
 	fprintf(f, "\nEl tiempo que se tomo en el mejorado fue de: %f ", difftime(fin,inicio) );
 }

@@ -7,7 +7,7 @@ void seleccion( int * arr, int size, FILE * f);
 
 void datos( int * arr,int s );
 
-void mergeSort(int * arr, int l, int r,FILE *f);
+void mergeSort(int * arr, int l, int r);
 
 void merge(int * arr, int l, int m, int r);
 
