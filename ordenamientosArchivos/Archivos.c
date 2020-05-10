@@ -30,7 +30,7 @@ void seleccion(int * arr, int s,FILE * f){
 	fprintf(f, "\nEl tiempo que se en seleccion fue de: %f ", difftime(fin,inicio) );
 }
 
-void merge(int * arr, int l, int m, int r, FILE *f){
+void merge(int * arr, int l, int m, int r){
 	int i, j, k;
 	int n1 = m - l + 1;
 	int n2 = r - m;
