@@ -44,5 +44,19 @@ void mostrarLocalesAbiertos(local_t ** centroComercial,int fil,int col);
 
 int arregloPiso( local_t ** centroComercial, int piso, int col, int *arr );
 
+//Funcion de ordenamiento tipo seleccion
+void seleccion( int *arr, int s );
 
+//Funcion de ordenamiento tipo mergeSort
+void mergeSort(int * arr, int l, int r);
+
+void merge(int * arr, int l, int m, int r);
+
+//Funcion de ordenamiento tipo inrseccion
+void insert_sort(int * v, int size);
+
+//Funcion de quick sort
+void quicksort( int *arr, int n );
+
+void quick( int *arr, int limizq, int limder );
 #endif /* FUNCIONESCC_H_ */

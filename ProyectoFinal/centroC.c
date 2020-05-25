@@ -134,12 +134,112 @@ void cerrarLocal(local_t ** centroComercial, int piso, int local ){
 
 int arregloPiso( local_t ** centroComercial,int piso ,int col, int *arr ){
 	int j;
+	//Este for pasa el piso a un arreglo
 	for( j = 0; j<col; j++ ){
 		arr[j] = centroComercial[piso][j].empleados;
-		printf("%d",arr[j]);
+		printf("%d ",arr[j]);
 	
 	}
 	return *arr;
+}
 
+void seleccion( int *arr, int s ){
+	int i, j, p,temp;
+	for( i = 0; i<s-1;i++ ){
+		p = i;
+		for( j = p ; j<= s-1;j++ ){
+			if(arr[j]<arr[p])
+				p = j;
+		}
+		temp = arr[i];
+		arr[i]=arr[p];
+		arr[p] = temp;
+	}
+}
 
+void merge(int * arr, int l, int m, int r){
+	int i, j, k;
+	int n1 = m - l + 1;
+	int n2 = r - m;
+	int L[n1], R[n2];
+	for (i = 0; i < n1; i++)
+		L[i] = arr[l + i];
+		for (j = 0; j <= n2; j++)
+			R[j] = arr[m + 1+ j];
+			i = 0;
+			j = 0;
+			k = l;
+			while (i < n1 && j < n2){
+			if (L[i] <= R[j]){
+			arr[k] = L[i];
+			i++;
+			}
+			else{
+			arr[k] = R[j];
+			j++;
+			}
+			k++;
+			}
+			while (i < n1){
+			arr[k] = L[i];
+			i++;
+			k++;
+			}
+			while (j < n2){
+			arr[k] = R[j];
+			j++;
+			k++;
+			}
+
+}
+
+void mergeSort(int * arr, int l, int r){
+	if (l < r){
+		int m = l+(r-l)/2;
+		mergeSort(arr, l, m);
+		mergeSort(arr, m+1, r);
+		merge(arr, l, m, r);
+	}
+}
+
+void insert_sort(int * v, int size){
+ 	int i, j, temp;
+	 for(i=0; i<size; i++){
+ 		temp=v[i];
+ 		j=i-1;
+ 		while(j>=0 && v[j] >temp){
+ 			v[j+1] = v[j];
+ 			j--;
+ 		}
+
+ 		v[j+1] = temp;
+	}
+}
+
+void quick( int *arr, int limizq, int limder ){
+	int izq, der, temp, mitad;
+	izq = limizq;	
+	der = limder;
+	mitad = arr[ ( izq + der ) / 2 ];
+	do{
+		while( arr[ izq ] < mitad && izq < limder )izq++;
+			while( mitad < arr[ der ] && der > limizq )der--;	
+				if( izq <= der ){
+					temp = arr[ izq ];
+					arr[ izq ] = arr[ der ];
+					arr[ der ] = temp;
+					izq++;
+					der--;
+				}
+	}while( izq <= der );
+		if( limizq < der ){
+			quick( arr, limizq, der);
+		}
+		if( limder > izq ){
+			quick( arr, izq, limder );
+		}
+}
+
+void quicksort( int *arr, int n ){
+	quick( arr, 0, n - 1 );
 }

@@ -18,7 +18,7 @@ int menu(){
 }
 
 int main(){
-   int opc, fil, col, n = 0,tipo,opcion;
+   int opc, fil, col, n = 0,tipo,opcion,i;
    int piso,local,numPiso, numLocalxPiso;
    local_t ** centroComercial;
    printf("Cual es el numero de pisos que necesita ?\n");
@@ -72,16 +72,33 @@ int main(){
 			        scanf( "%d", &piso );
 					piso = piso -1;
 					arregloPiso( centroComercial, piso, col, arr  );
-					printf( "%d", arr[0] );
-					printf( "Por cual metodo lo vas a ordenar ?" );
+					printf( "\nPor cual metodo lo vas a ordenar ?\n" );
 					printf( "Oprima 1 para ordenarlo por selection \n" );
 					printf( "Oprima 2 para ordenarlo por mergesort\n" );
 					printf( "Oprima 3 para ordebnarlo por inserccion\n" );
-					printf( "Oprima 3 para ordenarlo por quick sort\n" );
+					printf( "Oprima 4 para ordenarlo por quick sort\n" );
 					scanf( "%d", &opcion );
 					if( opcion==1 ){
-					
+						seleccion( arr, col );
 					}
+					if( opcion == 2 ){
+						mergeSort( arr,0,col-1 );
+
+					}
+					if( opcion == 3 ){
+						insert_sort( arr, col );
+					}
+
+					if( opcion == 4 ){
+						quicksort( arr, col );
+					}
+
+					for( i = 0; i<col; i++){
+						printf( "%d ", arr[i] );
+
+					}
+
+					break;
 		}
    }
    while( opc != 0 );
