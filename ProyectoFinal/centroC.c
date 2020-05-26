@@ -12,7 +12,7 @@ void mostrarLocal(local_t ** centroComercial,int fil, int col, int numPiso, int 
 		printf("El local tiene %d empelados trabajando \n", centroComercial[numPiso][numLocalxPiso].empleados);
 	   }
 	   else{
-	  	printf( "La tienda esta cerrada no se puede mostrar \n" );
+	  	printf( "El local no existe vuelva a intentarlo.\n" );
 	   }	 
 	}
 }
@@ -21,9 +21,9 @@ void mostrarLocalesAbiertos(local_t ** centroComercial,int fil,int col){
 	int i, j;
 	for( i = 0; i < fil; i++ ){
       	    for( j = 0; j < col; j++ ){
-		if( centroComercial[i][j].disp == 1 ){
-			printf("\nNombre local : %s\n", centroComercial[i][j].nombreLocal);
-		}
+				if( centroComercial[i][j].disp == 1 ){
+				printf("\nNombre local : %s\n", centroComercial[i][j].nombreLocal);
+			}
 	    }
    	}
 
@@ -32,19 +32,19 @@ void mostrarLocalesAbiertos(local_t ** centroComercial,int fil,int col){
 local_t ** reservaDinamica( int fil, int col ){
 	int i;
 	//Memoria filas
-	local_t ** centroComercial = malloc( fil * sizeof(local_t*) );
+	local_t ** centroComercial = new local_t * [fil] ;
 	if( centroComercial != NULL ){
 	//Memoria columnas
 	   for( i = 0; i < fil; i++ ){
-		centroComercial[i] = malloc( col * sizeof(local_t) );
+		centroComercial[i] = new local_t [col] ;
 		if( centroComercial[i] == NULL ){
-			printf( "Error en reservado de memoria \n" ); break;
+			throw std::logic_error ("Error en la reserva de memoria\n"); break;
 		}
 		//Indicador de reserva de memoria
 		printf("Cargando...\n"); 
 	   }
 	} else{
-	     printf( "Error en reservado de memoria \n" );
+	     throw std::logic_error ("Error en la reserva de memoria\n");
 	}
 	return centroComercial;
 }
@@ -87,8 +87,14 @@ void ingresarLocal( local_t ** centroComercial){
 		if( opc == 2 ){
 			localNuevo.tipo = COMIDA;
 		}
+		else{
+			printf( "La opcion no existe \n" );
+		}
 	 	localNuevo.disp = 1;
 		centroComercial[piso-1][local-1] = localNuevo;
+	    }
+	    else{
+	    	printf( "Ya se encuentra un local en esta ubicacion\n" );
 	    }
 }
 
@@ -113,9 +119,10 @@ void cambiarLocal(local_t ** centroComercial, int piso, int local){
 			printf("Introduzca el nombre nuevo ");
 			scanf( "%s", centroComercial[piso][local].nombreLocal );
 		}
-	}
-	else{
-	   printf( "Local cerrado\n" );
+	
+		else{
+	   		printf( "Local cerrado\n" );
+		}
 	}
 }
 

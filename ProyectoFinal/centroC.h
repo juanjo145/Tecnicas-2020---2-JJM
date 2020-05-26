@@ -1,10 +1,14 @@
 #ifndef FUNCIONESCC_H_
 #define FUNCIONESCC_H_
-#include <stdlib.h>
+#include <cstdlib>
 #include <stdio.h>
 #include <string.h>
+#include "iostream"
+#include <stdexcept>
+using namespace std;
 
-enum tipoLocal{
+
+typedef enum tipoLocal{
 	ROPA, COMIDA
 }tipo;
 //Local 
