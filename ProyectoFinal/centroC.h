@@ -59,4 +59,7 @@ void insert_sort(int * v, int size);
 void quicksort( int *arr, int n );
 
 void quick( int *arr, int limizq, int limder );
+
+//Funcion para agregar archivo binario 
+void escribir( local_t ** centroComercial, int fil, int col );
 #endif /* FUNCIONESCC_H_ */

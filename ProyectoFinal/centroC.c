@@ -136,8 +136,13 @@ int arregloPiso( local_t ** centroComercial,int piso ,int col, int *arr ){
 	int j;
 	//Este for pasa el piso a un arreglo
 	for( j = 0; j<col; j++ ){
-		arr[j] = centroComercial[piso][j].empleados;
-		printf("%d ",arr[j]);
+		if( centroComercial[piso][j].disp == 1 ){ 
+			arr[j] = centroComercial[piso][j].empleados;
+			printf("%d ",arr[j]);
+		}
+		else{
+
+		}
 	
 	}
 	return *arr;
@@ -242,4 +247,24 @@ void quick( int *arr, int limizq, int limder ){
 
 void quicksort( int *arr, int n ){
 	quick( arr, 0, n - 1 );
+}
+
+void escribir( local_t ** centroComercial, int fil, int col ){
+	int i,j;
+	FILE *f;
+	f = fopen( "Binarios.bin", "wb" );
+	for( i=0; i<=fil-1; i++ ){
+		printf("OOP");
+		for( j=0; j<=col-1; j++ ){
+			if( centroComercial[i][j].disp == 1 ){ 
+				fprintf(f,"\nNombre local : %s\n", centroComercial[i][j].nombreLocal);
+				fprintf(f,"Numero local : %d \n", centroComercial[i][j].numLocalxPiso);
+				fprintf(f,"ID del local : %d \n", centroComercial[i][j].idLocal);
+				fprintf(f,"El local tiene %d empelados trabajando \n", centroComercial[i][j].empleados);
+			}
+		}
+	}
+	fclose(f);
+	
+
 }

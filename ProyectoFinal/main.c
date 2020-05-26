@@ -10,6 +10,7 @@ int menu(){
 	printf( "  4 Eliminar un local \n" );
 	printf( "  5 MOSTRAR LOCALES ABIERTOS\n");
 	printf( "  6 Ordenar los locales de cualquier piso\n" );
+	printf( "  7 Refrescar datos en el documento\n" );
 	printf( "  0 SALIR \n" );
 	scanf( "%d", &opc );
 
@@ -99,8 +100,12 @@ int main(){
 					}
 
 					break;
+
+			case 7: escribir( centroComercial,fil,col );
+					break;
 		}
    }
    while( opc != 0 );
   	return 0;
+
 }
