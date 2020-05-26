@@ -87,14 +87,8 @@ void ingresarLocal( local_t ** centroComercial){
 		if( opc == 2 ){
 			localNuevo.tipo = COMIDA;
 		}
-		else{
-			printf( "La opcion no existe \n" );
-		}
 	 	localNuevo.disp = 1;
 		centroComercial[piso-1][local-1] = localNuevo;
-	    }
-	    else{
-	    	printf( "Ya se encuentra un local en esta ubicacion\n" );
 	    }
 }
 
@@ -119,12 +113,13 @@ void cambiarLocal(local_t ** centroComercial, int piso, int local){
 			printf("Introduzca el nombre nuevo ");
 			scanf( "%s", centroComercial[piso][local].nombreLocal );
 		}
-	
 		else{
-	   		printf( "Local cerrado\n" );
+			printf( "La opcion noexiste\n" );
 		}
 	}
-}
+
+	}
+
 
 void cerrarLocal(local_t ** centroComercial, int piso, int local ){
 	local_t localBorrado;
@@ -138,6 +133,7 @@ void cerrarLocal(local_t ** centroComercial, int piso, int local ){
 		centroComercial[piso][local] = localBorrado;
 	}
 }
+
 
 int arregloPiso( local_t ** centroComercial,int piso ,int col, int *arr ){
 	int j;
