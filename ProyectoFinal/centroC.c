@@ -136,19 +136,18 @@ void cerrarLocal(local_t ** centroComercial, int piso, int local ){
 
 
 int arregloPiso( local_t ** centroComercial,int piso ,int col, int *arr ){
-	int j;
+	int j,cont;
 	//Este for pasa el piso a un arreglo
+	
 	for( j = 0; j<col; j++ ){
 		if( centroComercial[piso][j].disp == 1 ){ 
 			arr[j] = centroComercial[piso][j].empleados;
 			printf("%d ",arr[j]);
-		}
-		else{
-
+			cont++;
 		}
 	
 	}
-	return *arr;
+	return cont;
 }
 
 void seleccion( int *arr, int s ){
